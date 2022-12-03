@@ -8,9 +8,16 @@ void	cria_elementos(t_lista **lista, char **argumentos)
 	int		linha; // Pra percorrer as linhas da matriz de argumentos
 	t_lista	*auxiliar; // Apenas pra ajudar a compreeender melhor o passo a passo (mas dá pra remover ela depois)
 
+	linha = 100;
+
+	//numero = ft_atoi(argumentos[linha]);
+	//*lista = ft_novo_elemento(numero); // Insiro o primeiro número na lista
+	*lista = ft_novo_elemento(linha);
+	while (linha > 30)
+	{
+		ft_adiciona_no_final(lista, ft_novo_elemento(--linha));
+	}
 	linha = 0;
-	numero = ft_atoi(argumentos[linha]);
-	*lista = ft_novo_elemento(numero); // Insiro o primeiro número na lista
 	if (*lista == NULL) // Se houver um Vinícius
 		return ; // Depois arrumar pra ficar melhor do que esse simples return
 	linha++; // Se na primeira linha deu certo, vamos pra próxima

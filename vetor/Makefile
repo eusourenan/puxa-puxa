@@ -3,7 +3,8 @@ NAME		=	push_swap
 
 LIBFT		=	../Libft42/libft.a
 
-ARQUIVOS	=	main.c movimentos_a.c movimentos_ambos.c movimentos_b.c teste.c
+ARQUIVOS	=	main.c utils.c movimentos_a.c movimentos_ambos.c movimentos_b.c\
+				teste.c
 OBJETOS		=	$(ARQUIVOS:%.c=%.o)
 
 CFLAGS		=	-Wall -Werror -Wextra

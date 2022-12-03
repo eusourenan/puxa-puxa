@@ -1,21 +1,63 @@
 
 #include "push_swap.h"
 
-// Função pra dar free em matriz
-void	free_matrix(char **matrix)
+
+// Função pra saber quanto de espaço tem que ser mallocado pro vetor
+int	ft_conta_argumentos(char **argumentos)
 {
+	int	quantidade_argumentos;
 	int	index;
 
-	index = 0;
-	if (matrix != NULL) // Verificação de segurança
+	quantidade_argumentos = 0;
+	if (argumentos != NULL)
 	{
-		while (matrix[index] != NULL) // Percorre até a última linha
+		index = 0;
+		while (argumentos[index] != NULL)
 		{
-			free(matrix[index]); // Free de linha por linha
+			quantidade_argumentos++;
 			index++;
 		}
-		free(matrix); // free final
 	}
+	return (quantidade_argumentos);
+}
+
+void	ft_cria_vetor(char **argumentos)
+{
+	t_lista	pilha_a; // A vai começar com os números
+	t_lista	pilha_b; // B vai começar sem números, mas tem que ser mallocado com o mesmo tamanho que a pilha A
+	int		quantidade_argumentos;
+
+	quantidade_argumentos = ft_conta_argumentos(argumentos); // Conto a quantidade certa pra mallocar
+	pilha_a.numeros = (int *) malloc(quantidade_argumentos * sizeof(int)); // malloco o espaço pros números
+	// if se deu errado
+	pilha_a.indexes = (int *) malloc(quantidade_argumentos * sizeof(int)); // malloco os espaço pros indexes
+	// if se deu errado
+	pilha_b.numeros = (int *) malloc(quantidade_argumentos * sizeof(int)); //malloco espaço dos números em B
+	// if se deu errado
+	pilha_b.indexes = (int *) malloc(quantidade_argumentos * sizeof(int)); // e o espaço pros indexes
+	// if se deu errado
+
+}
+
+// Função pra verificar se o usuário digitou apenas números, sem gracinhas no meio da brincadeira
+int	ft_tem_somente_numeros(char **argumento) // lembre que argv é o que você digitou (os números estão numa matriz, mas eles ainda são lidos como strings e não como números mesmo)
+{
+	int	linha;
+	int	coluna;
+
+	linha = 0;
+	while (argumento[linha] != NULL) // Vai percorrer até o fim da matriz
+	{
+		coluna = 0; // Fica aqui porque toda linha começa da coluna zero
+		while (argumento[linha][coluna] != '\0') // Vai percorrer até o final da linha
+		{
+			if (ft_isdigit(argumento[linha][coluna]) == 0) // Aqui eu verifico se tem algo diferente de um número
+				return (1); // Se tiver, retorno 1 e já (o que indica que deu ruim)
+			coluna++; // Incremento pra não ter loop infinito
+		}
+		linha++; // Incremento pra não ter loop infinito
+	}
+	return (0); // Se chegar aqui, o usuário digitou apenas números (zero erros)
 }
 
 // Função onde vai ser iniciar tudo
@@ -36,7 +78,7 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("argumentos pra poder organizar alguma coisa. (@_@)\n", 1);
 		return (1);
 	}// Se passou dessa linha, vamos ao menos verificar os argumentos
-	somente_numeros = tem_somente_numeros(++argv); // Verifica item por item
+	somente_numeros = ft_tem_somente_numeros(++argv); // Verifica item por item
 	if (somente_numeros == 1) // Se entrar nesse if, deu ruim, tem algo que não é número
 	{
 		ft_putstr_fd("Por gentileza, digite apenas números!\n", 1); // Mensagem de erro padrão

@@ -53,6 +53,7 @@ void	teste(t_lista *pilha_a, t_lista *pilha_b)
 {
 	char	teste[200];
 	int		qtd = size(pilha_a);
+	unsigned int		moves = 0;
 
 	do
 	{
@@ -60,6 +61,7 @@ void	teste(t_lista *pilha_a, t_lista *pilha_b)
 		printf("A brincadeira é simples: Digite o movimento que você quer (um por vez) e veja a mágica.\n");
 		printf("Movimentos possíveis: pa sa ra rra pb sb rb rrb ss rr rrr.\n");
 		printf("Digite 0 ou sair para encerrar.\n");
+		printf("\nMovimentos: %d\n\n", moves++);
 		printf("Sua escolha: ");
 		scanf("%s", teste);
 		if (!ft_strncmp("pa", teste, 2))
