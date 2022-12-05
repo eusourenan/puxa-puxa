@@ -36,6 +36,15 @@ void	ft_cria_vetor(char **argumentos)
 	// if se deu errado
 	pilha_b.indexes = (int *) malloc(quantidade_argumentos * sizeof(int)); // e o espaço pros indexes
 	// if se deu errado
+	pilha_a.topo = --quantidade_argumentos;
+	pilha_b.topo = -1;
+
+	while (*argumentos != NULL)
+	{
+		pilha_a.numeros[quantidade_argumentos--] = ft_atoi(*argumentos++);
+	}
+	
+	teste(&pilha_a, &pilha_b);
 
 }
 
@@ -85,7 +94,6 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Programa finalizado.\n", 1);
 		return (1);
 	}// Passando daqui, só tem números
-	vetor(&lista); // Aqui vamos colocar todos os números na lista, um por um
-	comeca_push();
+	ft_cria_vetor(argv); // Aqui vamos colocar todos os números na lista, um por um
 	return (0);
 }

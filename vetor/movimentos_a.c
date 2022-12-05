@@ -1,4 +1,5 @@
 
+#include "push_swap.h"
 
 void	ft_swap_a(t_lista *pilha_a)
 {
@@ -15,7 +16,7 @@ void	ft_swap_a(t_lista *pilha_a)
 	
 	auxiliar = pilha_a->indexes[pilha_a->topo];
 	pilha_a->indexes[pilha_a->topo] = pilha_a->indexes[pilha_a->topo - 1];
-	pilha_a->indexes[pilha_a->topo - 1] = auxiliar
+	pilha_a->indexes[pilha_a->topo - 1] = auxiliar;
 }
 
 void	ft_rotate_a(t_lista *pilha_a)
@@ -41,7 +42,7 @@ void	ft_rotate_a(t_lista *pilha_a)
 	pilha_a->indexes[i] = auxiliar[1];
 }
 
-void	ft_reverse_rotate(t_lista *pilha_a)
+void	ft_reverse_rotate_a(t_lista *pilha_a)
 {
 	int	auxiliar[2];
 	int	i;
@@ -62,4 +63,15 @@ void	ft_reverse_rotate(t_lista *pilha_a)
 	}
 	pilha_a->numeros[i] = auxiliar[0];
 	pilha_a->indexes[i] = auxiliar[1];
+}
+
+void	ft_push_a(t_lista *pilha_a, t_lista *pilha_b)
+{
+	if (pilha_a->topo < 0)
+	{
+		// deu ruim
+		return;
+	}
+	pilha_b->numeros[++pilha_b->topo] = pilha_a->numeros[pilha_a->topo--];
+	pilha_b->indexes[pilha_b->topo] = pilha_a->indexes[pilha_a->topo + 1];
 }
