@@ -23,15 +23,8 @@ void	ft_swap_swap(t_lista **pilha_a, t_lista **pilha_b)
 		&& *pilha_b != NULL && (*pilha_b)->proximo != NULL) // Verifico se tem pelo menos 2 elementos nas duas pilhas
 	{
 		// Explicar essa sequência de movimentos vai ter que ser com algo visual, malz
-		auxiliar_a = (*pilha_a)->proximo;
-		(*pilha_a)->proximo = (*pilha_a)->proximo->proximo;
-		auxiliar_a->proximo = *pilha_a;
-		*pilha_a = auxiliar_a;
-
-		auxiliar_b = (*pilha_b)->proximo;
-		(*pilha_b)->proximo = (*pilha_b)->proximo->proximo;
-		auxiliar_b->proximo = *pilha_b;
-		*pilha_b = auxiliar_b;
+		ft_swap_a(pilha_a);
+		ft_swap_b(pilha_b);
 	}
 	else
 	{
@@ -60,13 +53,8 @@ void	ft_rotacionar_rotacionar(t_lista **pilha_a, t_lista **pilha_b)
 		return ;
 	}
 	// Vai ser visual também (T.T) Só consigo explicar desenhando
-	auxiliar_a->proximo = *pilha_a;
-	*pilha_a = (*pilha_a)->proximo;
-	auxiliar_a->proximo->proximo = NULL;
-
-	auxiliar_b->proximo = *pilha_b;
-	*pilha_b = (*pilha_b)->proximo;
-	auxiliar_b->proximo->proximo = NULL;
+	ft_rotacionar_a(pilha_a);
+	ft_rotacionar_b(pilha_b);
 }
 
 /* Faz rotação reversa em A e B ao mesmo tempo
@@ -89,11 +77,6 @@ void	ft_rotacao_reversa_reversa(t_lista **pilha_a, t_lista **pilha_b)
 		return ;
 	}
 	// Vai ser visual também (T.T) Só consigo explicar desenhando
-	auxiliar_a->proximo->proximo = *pilha_a;
-	*pilha_a = auxiliar_a->proximo;
-	auxiliar_a->proximo = NULL;
-
-	auxiliar_b->proximo->proximo = *pilha_b;
-	*pilha_b = auxiliar_b->proximo;
-	auxiliar_b->proximo = NULL;
+	ft_rotacao_reversa_a(pilha_a);
+	ft_rotacao_reversa_b(pilha_b);
 }

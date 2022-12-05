@@ -51,6 +51,15 @@ void	ft_reverse_rotate(t_lista *pilha_a)
 		// deu ruim
 		return ;
 	}
-
-	
+	i = 0;
+	auxiliar[0] = pilha_a->numeros[0];
+	auxiliar[1] = pilha_a->indexes[0];
+	while (i < pilha_a->topo)
+	{
+		pilha_a->numeros[i] = pilha_a->numeros[i + 1];
+		pilha_a->indexes[i] = pilha_a->indexes[i + 1];
+		i++;
+	}
+	pilha_a->numeros[i] = auxiliar[0];
+	pilha_a->indexes[i] = auxiliar[1];
 }

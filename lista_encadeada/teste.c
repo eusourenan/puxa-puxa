@@ -82,10 +82,12 @@ void	teste(t_lista *pilha_a, t_lista *pilha_b)
 			ft_rotacao_reversa_b(&pilha_b);
 		else if (!ft_strncmp("ss", teste, 2))
 			ft_swap_swap(&pilha_a, &pilha_b);
-		else if (!ft_strncmp("rr", teste, 2))
-			ft_rotacionar_rotacionar(&pilha_a, &pilha_b);
 		else if (!ft_strncmp("rrr", teste, 3))
 			ft_rotacao_reversa_reversa(&pilha_a, &pilha_b);
+		else if (!ft_strncmp("rr", teste, 2))
+			ft_rotacionar_rotacionar(&pilha_a, &pilha_b);
+		else
+			moves--;
 		if (!sair(teste))
 			system("clear");
 	} while (!sair(teste));
