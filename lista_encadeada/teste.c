@@ -64,27 +64,27 @@ void	teste(t_lista *pilha_a, t_lista *pilha_b)
 		printf("\nMovimentos: %d\n\n", moves++);
 		printf("Sua escolha: ");
 		scanf("%s", teste);
-		if (!ft_strncmp("pa", teste, 2))
+		if (!ft_strncmp("pa", teste, 3))
 			ft_push_a(&pilha_a, &pilha_b);
-		else if (!ft_strncmp("sa", teste, 2))
+		else if (!ft_strncmp("sa", teste, 3))
 			ft_swap_a(&pilha_a);
-		else if (!ft_strncmp("ra", teste, 2))
+		else if (!ft_strncmp("ra", teste, 3))
 			ft_rotacionar_a(&pilha_a);
-		else if (!ft_strncmp("rra", teste, 3))
+		else if (!ft_strncmp("rra", teste, 4))
 			ft_rotacao_reversa_a(&pilha_a);
-		else if (!ft_strncmp("pb", teste, 2))
+		else if (!ft_strncmp("pb", teste, 3))
 			ft_push_b(&pilha_b, &pilha_a);
-		else if (!ft_strncmp("sb", teste, 2))
+		else if (!ft_strncmp("sb", teste, 3))
 			ft_swap_b(&pilha_b);
-		else if (!ft_strncmp("rb", teste, 2))
+		else if (!ft_strncmp("rb", teste, 3))
 			ft_rotacionar_b(&pilha_b);
-		else if (!ft_strncmp("rrb", teste, 3))
+		else if (!ft_strncmp("rrb", teste, 4))
 			ft_rotacao_reversa_b(&pilha_b);
-		else if (!ft_strncmp("ss", teste, 2))
+		else if (!ft_strncmp("ss", teste, 3))
 			ft_swap_swap(&pilha_a, &pilha_b);
-		else if (!ft_strncmp("rrr", teste, 3))
+		else if (!ft_strncmp("rrr", teste, 4))
 			ft_rotacao_reversa_reversa(&pilha_a, &pilha_b);
-		else if (!ft_strncmp("rr", teste, 2))
+		else if (!ft_strncmp("rr", teste, 3))
 			ft_rotacionar_rotacionar(&pilha_a, &pilha_b);
 		else
 			moves--;
