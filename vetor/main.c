@@ -57,6 +57,8 @@ int	ft_tem_somente_numeros(char **argumento) // lembre que argv é o que você d
 	linha = 0;
 	while (argumento[linha] != NULL) // Vai percorrer até o fim da matriz
 	{
+		if (!*argumento[linha])
+			return (1);
 		coluna = 0; // Fica aqui porque toda linha começa da coluna zero
 		while (argumento[linha][coluna] != '\0') // Vai percorrer até o final da linha
 		{

@@ -52,6 +52,8 @@ int	tem_somente_numeros(char **argumento) // lembre que argv é o que você digi
 	while (argumento[linha] != NULL) // Vai percorrer até o fim da matriz
 	{
 		coluna = 0; // Fica aqui porque toda linha começa da coluna zero
+		if (!*argumento[linha])
+			return (1);
 		while (argumento[linha][coluna] != '\0') // Vai percorrer até o final da linha
 		{
 			if (ft_isdigit(argumento[linha][coluna]) == 0 && (argumento[linha][coluna] != '-' || coluna != 0)) // Aqui eu verifico se tem algo diferente de um número
