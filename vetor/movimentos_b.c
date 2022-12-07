@@ -67,11 +67,11 @@ void	ft_reverse_rotate_b(t_lista *pilha_b)
 
 void	ft_push_b(t_lista *pilha_b, t_lista *pilha_a)
 {
-	if (pilha_b->topo < 0)
+	if (pilha_a->topo < 0)
 	{
 		// deu ruim
 		return;
 	}
-	pilha_a->numeros[++pilha_a->topo] = pilha_b->numeros[pilha_b->topo--];
-	pilha_a->indexes[pilha_a->topo] = pilha_b->indexes[pilha_b->topo + 1];
+	pilha_b->numeros[++pilha_b->topo] = pilha_a->numeros[pilha_a->topo--];
+	pilha_b->indexes[pilha_b->topo] = pilha_a->indexes[pilha_a->topo + 1];
 }

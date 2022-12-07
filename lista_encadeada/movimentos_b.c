@@ -108,13 +108,13 @@ void	ft_push_b(t_lista **pilha_b, t_lista **pilha_a)
 {
 	t_lista	*auxiliar;
 
-	if (pilha_b == NULL || *pilha_b == NULL) // Verificação de segurança
+	if (pilha_a == NULL || *pilha_a == NULL) // Verificação de segurança
 	{
 		// Mensagem de erro?
 		return ;
 	}
-	auxiliar = *pilha_b;
-	*pilha_b = (*pilha_b)->proximo;
+	auxiliar = *pilha_a;
+	*pilha_a = (*pilha_a)->proximo;
 	auxiliar->proximo = NULL;
-	ft_adiciona_no_topo(pilha_a, auxiliar);
+	ft_adiciona_no_topo(pilha_b, auxiliar);
 }
