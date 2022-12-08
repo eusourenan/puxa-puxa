@@ -33,7 +33,7 @@ void	ft_organizar_indexes(t_lista *pilha_a, int quantidade_argumentos)
 		segundo_index = 0;
 		while (segundo_index < quantidade_argumentos)
 		{
-			if (pilha_a->numeros[primeiro_index] < pilha_a->numeros[segundo_index])
+			if (pilha_a->numeros[primeiro_index] > pilha_a->numeros[segundo_index])
 			{
 				pilha_a->indexes[primeiro_index] += 1;
 			}
@@ -41,8 +41,8 @@ void	ft_organizar_indexes(t_lista *pilha_a, int quantidade_argumentos)
 		}
 		primeiro_index++;
 	}
-	primeiro_index = 0;
-	ft_putstr_fd("\n\n\t  Fim da pilha\n", 1);
+	/*primeiro_index = 0;
+	ft_putstr_fd("\n\n\t\t  Topo da pilha\n", 1);
 	while (primeiro_index < quantidade_argumentos)
 	{
 		ft_putstr_fd("pilha_a->numeros[ ", 1);
@@ -55,7 +55,7 @@ void	ft_organizar_indexes(t_lista *pilha_a, int quantidade_argumentos)
 		ft_putstr_fd("\n", 1);
 		primeiro_index++;
 	}
-	ft_putstr_fd("\t\t  ^Topo da pilha\n", 1);
+	ft_putstr_fd("\t\t ^Fim da pilha\n", 1);*/
 }
 
 void	ft_cria_vetor(char **argumentos)
@@ -73,18 +73,22 @@ void	ft_cria_vetor(char **argumentos)
 	// if se deu errado
 	pilha_b.indexes = (int *) malloc(quantidade_argumentos * sizeof(int)); // e o espaço pros indexes
 	// if se deu errado
-	pilha_a.topo = --quantidade_argumentos;
-	pilha_b.topo = quantidade_argumentos + 1;
+	pilha_a.ultimo = --quantidade_argumentos;
+	pilha_a.topo = 0;
+	pilha_b.ultimo = pilha_a.ultimo;
+	pilha_b.topo = -(pilha_b.ultimo + 1);
 
 	while (*argumentos != NULL)
 	{
-		pilha_a.numeros[quantidade_argumentos--] = ft_atoi(*argumentos++);
+		pilha_a.numeros[pilha_a.topo] = ft_atoi(argumentos[0]);
+		pilha_a.topo++;
+		argumentos++;
 	}
-	ft_organizar_indexes(&pilha_a, pilha_b.topo);
-	pilha_b.topo = -1;
-	//ft_checar_caso(&pilha_a, &pilha_b, quantidade_argumentos);
+	pilha_a.topo = 0;
+	ft_organizar_indexes(&pilha_a, pilha_a.ultimo + 1);
+	ft_checar_caso(&pilha_a, &pilha_b, pilha_a.ultimo);
+	print_pilhas(&pilha_a, &pilha_b, pilha_a.ultimo);
 	//teste(&pilha_a, &pilha_b);
-
 }
 
 // Função pra verificar se o usuário digitou apenas números, sem gracinhas no meio da brincadeira

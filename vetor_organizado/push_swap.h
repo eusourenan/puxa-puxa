@@ -12,6 +12,7 @@ struct s_lista
 	int	*numeros;
 	int	*indexes;
 	int	topo;
+	int	ultimo;
 };
 
 typedef struct s_lista t_lista;
@@ -35,5 +36,7 @@ void	ft_reverse_rotate_rotate(t_lista *pilha_a, t_lista *pilha_b);
 void	teste(t_lista *pilha_a, t_lista *pilha_b);
 
 void	ft_checar_caso(t_lista *pilha_a, t_lista *pilha_b, int numeros);
+
+void	print_pilhas(t_lista *pilha_a, t_lista *pilha_b, int qtd);
 
 #endif
