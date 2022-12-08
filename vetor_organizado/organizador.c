@@ -6,7 +6,7 @@
 /*   By: rleite-s < rleite-s@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:58:16 by rleite-s          #+#    #+#             */
-/*   Updated: 2022/12/08 01:49:15 by rleite-s         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:41:26 by rleite-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ void	ft_checar_caso(t_lista *pilha_a, t_lista *pilha_b, int numeros)
 
 void	ft_organiza_ate_3(t_lista *pilha_a, t_lista *pilha_b)
 {
-	if (pilha_a->indexes[0] == 0 && pilha_a->indexes[1] == 2 && pilha_a->indexes[2] == 1)
+	if (pilha_a->topo == 1)
+		ft_swap_a(pilha_a);
+	else if (pilha_a->indexes[0] == 0 && pilha_a->indexes[1] == 2 && pilha_a->indexes[2] == 1)
 	{
 		ft_reverse_rotate_a(pilha_a);
 		ft_swap_a(pilha_a);

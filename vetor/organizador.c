@@ -6,7 +6,7 @@
 /*   By: rleite-s < rleite-s@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:58:16 by rleite-s          #+#    #+#             */
-/*   Updated: 2022/12/07 22:56:47 by rleite-s         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:55:10 by rleite-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,34 +57,28 @@ void	ft_checar_caso(t_lista *pilha_a, t_lista *pilha_b, int numeros)
 	else
 		ft_organiza_acima_100(pilha_a, pilha_b);
 }
-
+// Lógica alternativa e mais otimizada:Joga o maior pro final da pilha (2 ifs) e dá um swap (se preciso for)
 void	ft_organiza_ate_3(t_lista *pilha_a, t_lista *pilha_b)
 {
-	/*if (pilha_a->numeros[2] < pilha_a->numeros[1] && pilha_a->numeros[1] > pilha_a->numeros[0] && pilha_a->numeros[2] < pilha_a->numeros[0])
-	
-	/ *if (pilha_a->numeros[2] == 1 && pilha_a->numeros[1] == 3 && pilha_a->numeros[0] == 2)*/
-	if (pilha_a->indexes[2] == 0 && pilha_a->indexes[1] == 2 && pilha_a->indexes[0] == 1)
+	if (pilha_a->topo == 1)
+		ft_swap_a(pilha_a);
+	else if (pilha_a->indexes[0] == 1 && pilha_a->indexes[1] == 2 && pilha_a->indexes[2] == 0)
 	{
 		ft_reverse_rotate_a(pilha_a);
 		ft_swap_a(pilha_a);
 	}
-	if (pilha_a->numeros[0] == 3 && pilha_a->numeros[1] == 1 && pilha_a->numeros[2] == 2)
-	{
+	else if (pilha_a->indexes[0] == 2 && pilha_a->indexes[1] == 0 && pilha_a->indexes[2] == 1)
 		ft_swap_a(pilha_a);
-	}
-	if (pilha_a->numeros[0] == 1 && pilha_a->numeros[1] == 3 && pilha_a->numeros[2] == 2)
-	{
+	else if (pilha_a->indexes[0] == 0 && pilha_a->indexes[1] == 2 && pilha_a->indexes[2] == 1)
 		ft_reverse_rotate_a(pilha_a);
-	}
-	if (pilha_a->numeros[0] == 2 && pilha_a->numeros[1] == 1 && pilha_a->numeros[2] == 3)
+	else if (pilha_a->indexes[0] == 1 && pilha_a->indexes[1] == 0 && pilha_a->indexes[2] == 2)
 	{
 		ft_rotate_a(pilha_a);
 	}
-	if (pilha_a->numeros[0] == 1 && pilha_a->numeros[1] == 2 && pilha_a->numeros[2] == 3)
+	else if (pilha_a->indexes[0] == 0 && pilha_a->indexes[1] == 1 && pilha_a->indexes[2] == 2)
 	{
 		ft_swap_a(pilha_a);
 		ft_reverse_rotate_a(pilha_a);
-		
 	}
 }
 

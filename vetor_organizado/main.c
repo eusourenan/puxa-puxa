@@ -1,7 +1,6 @@
 
 #include "push_swap.h"
 
-
 // Função pra saber quanto de espaço tem que ser mallocado pro vetor
 int	ft_conta_argumentos(char **argumentos)
 {
