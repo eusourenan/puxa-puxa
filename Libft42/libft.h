@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rleite-s < rleite-s@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: msilva-p <msilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 19:22:59 by msilva-p          #+#    #+#             */
-/*   Updated: 2022/12/03 04:02:05 by rleite-s         ###   ########.fr       */
+/*   Updated: 2022/12/11 20:43:51 by msilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 int		ft_isalpha(int c);
 int		ft_tolower(int c);
@@ -50,5 +51,12 @@ char	*ft_strtrim(char const *s1, char const *set);
 void	ft_striteri(char *s, void (*f) (unsigned int, char*));
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
+int		ft_printf(const char *string, ...);
+int		ft_print_number(int nb);
+int		ft_print_string(char *string);
+int		ft_print_hexa(unsigned int hexa, char c);
+int		ft_print_unsigned(unsigned int un);
+int		ft_print_pointer(unsigned long pointer, char c);
+int		ft_print_char(int b);
 
 #endif

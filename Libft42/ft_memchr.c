@@ -6,7 +6,7 @@
 /*   By: msilva-p <msilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 18:37:31 by msilva-p          #+#    #+#             */
-/*   Updated: 2022/06/29 23:48:24 by msilva-p         ###   ########.fr       */
+/*   Updated: 2022/12/12 01:54:20 by msilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,3 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (NULL);
 }
- 

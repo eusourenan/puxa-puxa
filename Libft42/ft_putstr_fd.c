@@ -6,7 +6,7 @@
 /*   By: msilva-p <msilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:53:51 by msilva-p          #+#    #+#             */
-/*   Updated: 2022/06/23 16:57:53 by msilva-p         ###   ########.fr       */
+/*   Updated: 2022/12/12 01:57:18 by msilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	write(fd, s, ft_strlen(s));
+	if (s)
+		write(fd, s, ft_strlen(s));
 }

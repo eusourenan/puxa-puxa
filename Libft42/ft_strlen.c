@@ -6,7 +6,7 @@
 /*   By: msilva-p <msilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 19:30:58 by msilva-p          #+#    #+#             */
-/*   Updated: 2022/09/03 01:29:52 by msilva-p         ###   ########.fr       */
+/*   Updated: 2022/12/12 01:53:21 by msilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 size_t	ft_strlen(const char *s)
 {
-	int	i;
+	size_t	len;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	len = 0;
+	while (s != NULL && s[len])
+	{
+		len++;
+	}
+	return (len);
 }
-
