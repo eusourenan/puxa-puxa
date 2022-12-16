@@ -1,6 +1,11 @@
 
 #include "push_swap.h"
 
+int ft_error(void)
+{
+	ft_printf("Error!\n");
+	return(1);
+}
 // Função pra saber quanto de espaço tem que ser mallocado pro vetor
 int	ft_conta_argumentos(char **argumentos)
 {
@@ -57,37 +62,65 @@ void	ft_organizar_indexes(t_lista *pilha_a, int quantidade_argumentos)
 	ft_putstr_fd("\t\t ^Fim da pilha\n", 1);*/
 }
 
+int ft_malloc(int *vetor, int args)
+{
+	vetor = (int *) malloc(args * sizeof(int));
+	if (vetor == NULL)
+		return(ft_error());
+	else
+		return(0);
+}
+
+int ft_mallocado(t_lista *pilha_a, t_lista *pilha_b, int quantidade_argumentos)
+{
+	if (ft_malloc(pilha_a->numeros, quantidade_argumentos) == 1)
+		return(1); // malloco o espaço pros números
+	// if se deu errado
+	if (ft_malloc(pilha_a->indexes, quantidade_argumentos) == 1) // malloco os espaço pros indexes
+	{
+		free(pilha_a->numeros);
+		return(1); 
+	}
+	// if se deu errado
+	if (ft_malloc(pilha_b->numeros, quantidade_argumentos) == 1)
+	{
+		free(pilha_a->numeros);
+		free(pilha_a->indexes);
+		return(1);
+	} 
+	if (ft_malloc(pilha_b->indexes, quantidade_argumentos) == 1)
+	{
+		free(pilha_a->numeros);
+		free(pilha_a->indexes);
+		free(pilha_b->numeros);
+		return(1);
+	}
+	return(0);
+}
 void	ft_cria_vetor(char **argumentos)
 {
 	t_lista	pilha_a; // A vai começar com os números
 	t_lista	pilha_b; // B vai começar sem números, mas tem que ser mallocado com o mesmo tamanho que a pilha A
 	int		quantidade_argumentos;
+	int		posicao_atual;
 
 	quantidade_argumentos = ft_conta_argumentos(argumentos); // Conto a quantidade certa pra mallocar
-	pilha_a.numeros = (int *) malloc(quantidade_argumentos * sizeof(int)); // malloco o espaço pros números
+	if (ft_mallocado(&pilha_a, &pilha_b, quantidade_argumentos) == 1)
+		return ;
 	// if se deu errado
-	pilha_a.indexes = (int *) malloc(quantidade_argumentos * sizeof(int)); // malloco os espaço pros indexes
-	// if se deu errado
-	pilha_b.numeros = (int *) malloc(quantidade_argumentos * sizeof(int)); //malloco espaço dos números em B
-	// if se deu errado
-	pilha_b.indexes = (int *) malloc(quantidade_argumentos * sizeof(int)); // e o espaço pros indexes
-	// if se deu errado
-	pilha_a.ultimo = --quantidade_argumentos;
-	pilha_a.topo = 0;
-	pilha_b.ultimo = pilha_a.ultimo;
-	pilha_b.topo = -(pilha_b.ultimo + 1);
+	pilha_a.ultimo = quantidade_argumentos - 1;
+	pilha_b.ultimo = -1; //se ultimo for = -1, então pilha b está vazia / pilha a idem
 
-	while (*argumentos != NULL)
+	posicao_atual = 0;
+	while (argumentos[posicao_atual] != NULL)
 	{
-		pilha_a.numeros[pilha_a.topo] = ft_atoi(argumentos[0]);
-		pilha_a.topo++;
-		argumentos++;
+		pilha_a.numeros[posicao_atual] = ft_atoi(argumentos[posicao_atual]);
+		posicao_atual++;
 	}
-	pilha_a.topo = 0;
-	ft_organizar_indexes(&pilha_a, pilha_a.ultimo + 1);
-	ft_checar_caso(&pilha_a, &pilha_b, pilha_a.ultimo);
-	print_pilhas(&pilha_a, &pilha_b, pilha_a.ultimo);
-	//teste(&pilha_a, &pilha_b);
+	ft_organizar_indexes(&pilha_a, quantidade_argumentos);
+	//ft_checar_caso(&pilha_a, &pilha_b, pilha_a.ultimo);
+	//print_pilhas(&pilha_a, &pilha_b, pilha_a.ultimo);
+ 	teste(&pilha_a, &pilha_b);
 }
 
 // Função pra verificar se o usuário digitou apenas números, sem gracinhas no meio da brincadeira
@@ -120,24 +153,15 @@ int	main(int argc, char **argv)
 	t_lista	lista; // Linha auto-explicativa
 
 	if (argc < 2) // Se tiver menos de 2 argumentos, só tem o nome do arquivo
-	{
-		ft_putstr_fd("Sem números fica difícel de organizar... (T.T)\n", 1); // mensagem de erro.
-		return (1);
-	}
-	if (argc < 3) // Nesse caso, ele só digitou um número
-	{
-		// Mensagem de erro dividida em 2 comandos por conta de norma ヽ(ヅ)ノ
-		ft_putstr_fd("Nem vou verificar esse argumento, preciso de mais ", 1);
-		ft_putstr_fd("argumentos pra poder organizar alguma coisa. (@_@)\n", 1);
-		return (1);
-	}// Se passou dessa linha, vamos ao menos verificar os argumentos
+		return(ft_error());
+	
+	if (argc < 3) // Nesse caso, ele só digitou um número //verificar quando só tem 1 arg(numero)
+		return(ft_error()); // Mensagem de erro dividida em 2 comandos por conta de norma ヽ(ヅ)ノ
+	// Se passou dessa linha, vamos ao menos verificar os argumentos
 	somente_numeros = ft_tem_somente_numeros(++argv); // Verifica item por item
 	if (somente_numeros == 1) // Se entrar nesse if, deu ruim, tem algo que não é número
-	{
-		ft_putstr_fd("Por gentileza, digite apenas números!\n", 1); // Mensagem de erro padrão
-		ft_putstr_fd("Programa finalizado.\n", 1);
-		return (1);
-	}// Passando daqui, só tem números
+		return(ft_error());
+	// Passando daqui, só tem números
 	ft_cria_vetor(argv); // Aqui vamos colocar todos os números na lista, um por um
 	return (0);
 }

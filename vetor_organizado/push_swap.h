@@ -11,7 +11,6 @@ struct s_lista
 {
 	int	*numeros;
 	int	*indexes;
-	int	topo;
 	int	ultimo;
 };
 

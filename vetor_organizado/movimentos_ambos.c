@@ -3,7 +3,7 @@
 
 void	ft_swap_swap(t_lista *pilha_a, t_lista *pilha_b)
 {
-	if (pilha_a->topo < 0 || pilha_b->topo < 0)
+	if (pilha_a->ultimo <= 0 || pilha_b->ultimo <= 0)
 	{
 		// deu ruim
 		return ;
@@ -14,7 +14,7 @@ void	ft_swap_swap(t_lista *pilha_a, t_lista *pilha_b)
 
 void	ft_rotate_rotate(t_lista *pilha_a, t_lista *pilha_b)
 {
-	if (pilha_a->topo < 0 || pilha_b->topo < 0)
+	if (pilha_a->ultimo <= 0 || pilha_b->ultimo <= 0)
 	{
 		// deu ruim
 		return ;
@@ -25,7 +25,7 @@ void	ft_rotate_rotate(t_lista *pilha_a, t_lista *pilha_b)
 
 void	ft_reverse_rotate_rotate(t_lista *pilha_a, t_lista *pilha_b)
 {
-	if (pilha_a->topo < 0 || pilha_b->topo < 0)
+	if (pilha_a->ultimo <= 0 || pilha_b->ultimo <= 0)
 	{
 		// deu ruim
 		return ;
