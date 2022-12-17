@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rleite-s < rleite-s@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: msilva-p <msilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 20:06:01 by rleite-s          #+#    #+#             */
-/*   Updated: 2022/12/07 20:09:10 by rleite-s         ###   ########.fr       */
+/*   Updated: 2022/12/17 19:52:25 by msilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@
 # define SS 9
 # define RR 10
 # define RRR 11
+# define INT_MIN -2147483648
+# define INT_MAX 2147483647
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: msilva-p <msilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 00:10:58 by msilva-p          #+#    #+#             */
-/*   Updated: 2022/12/17 01:01:44 by msilva-p         ###   ########.fr       */
+/*   Updated: 2022/12/17 19:53:24 by msilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,11 @@ void	ft_swap_a(t_stack *a)
 
 	if (a->last <= 0)
 	{
-		// deu ruim
 		return ;
 	}
 	aux = a->numbers[0];
 	a->numbers[0] = a->numbers[1];
 	a->numbers[1] = aux;
-	
 	aux = a->indexes[0];
 	a->indexes[0] = a->indexes[1];
 	a->indexes[1] = aux;
@@ -34,12 +32,11 @@ void	ft_swap_a(t_stack *a)
 void	ft_rotate_a(t_stack *a)
 {
 	int	aux_numbers;
-	int aux_indexes;
+	int	aux_indexes;
 	int	i;
 
 	if (a->last <= 0)
 	{
-		// deu ruim
 		return ;
 	}
 	i = 0;
@@ -59,12 +56,11 @@ void	ft_rotate_a(t_stack *a)
 void	ft_reverse_rotate_a(t_stack *a)
 {
 	int	aux_numbers;
-	int aux_indexes;
+	int	aux_indexes;
 	int	i;
 
 	if (a->last <= 0) //if para verificar se é possível fazer o movimento 
 	{
-		// deu ruim
 		return ;
 	}
 	i = a->last;
@@ -83,12 +79,11 @@ void	ft_reverse_rotate_a(t_stack *a)
 
 void	ft_push_a(t_stack *b, t_stack *a)
 {
-	int i;
-	 
+	int	i;
+
 	if (b->last < 0) //se a pilha estiver vazia, o last elemento dela vale -1 (não tem nenhum caracter)
 	{
-		// deu ruim
-		return;
+		return ;
 	}
 	i = a->last + 1;
 	while (i > 0)

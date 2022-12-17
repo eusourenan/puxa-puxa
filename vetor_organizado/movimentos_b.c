@@ -6,7 +6,7 @@
 /*   By: msilva-p <msilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 00:22:58 by msilva-p          #+#    #+#             */
-/*   Updated: 2022/12/17 00:26:59 by msilva-p         ###   ########.fr       */
+/*   Updated: 2022/12/17 18:30:36 by msilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,11 @@ void	ft_swap_b(t_stack *b)
 
 	if (b->last <= 0)
 	{
-		// deu ruim
 		return ;
 	}
 	aux = b->numbers[0];
 	b->numbers[0] = b->numbers[1];
 	b->numbers[1] = aux;
-	
 	aux = b->indexes[0];
 	b->indexes[0] = b->indexes[1];
 	b->indexes[1] = aux;
@@ -34,12 +32,11 @@ void	ft_swap_b(t_stack *b)
 void	ft_rotate_b(t_stack *b)
 {
 	int	aux_indexes;
-	int aux_numbers;
+	int	aux_numbers;
 	int	i;
 
 	if (b->last <= 0)
 	{
-		// deu ruim
 		return ;
 	}
 	i = 0;
@@ -59,12 +56,11 @@ void	ft_rotate_b(t_stack *b)
 void	ft_reverse_rotate_b(t_stack *b)
 {
 	int	aux_numbers;
-	int aux_indexes;
+	int	aux_indexes;
 	int	i;
 
 	if (b->last <= 0)
 	{
-		// deu ruim
 		return ;
 	}
 	i = b->last;
@@ -83,12 +79,11 @@ void	ft_reverse_rotate_b(t_stack *b)
 
 void	ft_push_b(t_stack *a, t_stack *b)
 {
-	int i;
-	 
+	int	i;
+
 	if (a->last < 0) //se a pilha estiver vazia, o last elemento dela vale -1 (não tem nenhum caracter) (então é menor que zero)
 	{
-		// deu ruim
-		return;
+		return ;
 	}
 	i = b->last + 1; //quantidade de caracteres da pilha b + 1
 	while (i > 0)

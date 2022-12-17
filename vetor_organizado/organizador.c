@@ -6,7 +6,7 @@
 /*   By: msilva-p <msilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:58:16 by rleite-s          #+#    #+#             */
-/*   Updated: 2022/12/17 01:07:17 by msilva-p         ###   ########.fr       */
+/*   Updated: 2022/12/17 18:04:25 by msilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,30 +79,30 @@ void	ft_sort_for_3(t_stack *a)
 
 int	ft_ret_bigger(t_stack *a)
 {
-	int number;
-	int bigger;
-	int bigger_index;
-	
+	int	number;
+	int	bigger;
+	int	bigger_index;
+
 	number = a->numbers[0];
 	bigger = 0;
 	bigger_index = bigger;
-	while(bigger <= a->last)
+	while (bigger <= a->last)
 	{
-		if(a->numbers[bigger] > number)
+		if (a->numbers[bigger] > number)
 		{
 			number = a->numbers[bigger];
 			bigger_index = bigger;
 		}
 		bigger++;
 	}
-	return(bigger_index);
-} 
+	return (bigger_index);
+}
 
-int		ft_ret_pos_smaller(t_stack *a)
+int	ft_ret_pos_smaller(t_stack *a)
 {
-	int i;
-	int small_num;
-	int pos_small;
+	int	i;
+	int	small_num;
+	int	pos_small;
 
 	i = 0;
 	small_num = a->numbers[0];
@@ -142,11 +142,11 @@ void	ft_sort_for_5(t_stack *a, t_stack *b)
 		ft_push_a(b, a);
 }
 
-int		ft_ret_bigger_binary(t_stack *a)
+int	ft_ret_bigger_binary(t_stack *a)
 {
-	int i;
-	int bigger_num;
-	int qtd_dig_binary;
+	int	i;
+	int	bigger_num;
+	int	qtd_dig_binary;
 
 	i = 1;
 	bigger_num = a->numbers[0];
@@ -169,9 +169,9 @@ int		ft_ret_bigger_binary(t_stack *a)
 
 void	ft_sort_more_5(t_stack *a, t_stack *b, int nums_stack)
 {
-	int qtd_dig_binary;
-	int i;
-	int j;
+	int	qtd_dig_binary;
+	int	i;
+	int	j;
 
 	qtd_dig_binary = ft_ret_bigger_binary(a);
 	i = 0;
@@ -195,4 +195,3 @@ void	ft_sort_more_5(t_stack *a, t_stack *b, int nums_stack)
 		i++;
 	}
 }
-
