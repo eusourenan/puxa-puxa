@@ -6,7 +6,7 @@
 /*   By: rleite-s < rleite-s@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 00:28:56 by msilva-p          #+#    #+#             */
-/*   Updated: 2022/12/17 23:19:57 by rleite-s         ###   ########.fr       */
+/*   Updated: 2022/12/17 23:31:10 by rleite-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_malloc(int **vector, int args)
 int	ft_alloc_stack(t_stack *a, t_stack *b, int args)
 {
 	if (ft_malloc(&a->numbers, args) == 1)
-		return(1); // malloco o espaço pros números
+		return (1); // malloco o espaço pros números
 	// if se deu errado
 	if (ft_malloc(&a->indexes, args) == 1) // malloco os espaço pros indexes
 	{
@@ -171,7 +171,7 @@ int	ft_is_only_numbers(char **arg) // lembre que argv é o que você digitou (os
 long	ft_atoi_plus(const char *nptr)
 {
 	long	result;
-	int	sign;
+	int		sign;
 
 	result = 0;
 	sign = 1;
@@ -186,7 +186,7 @@ long	ft_atoi_plus(const char *nptr)
 	while (ft_isdigit(*nptr))
 	{
 		result = result * 10 + (*nptr - '0');
-		if(result < INT_MIN || result > INT_MAX) //se um número "muito grande" for analisado (é analisado dig por dig) (é inválido) e vai retornar 42bilhões
+		if (result < INT_MIN || result > INT_MAX) //se um número "muito grande" for analisado (é analisado dig por dig) (é inválido) e vai retornar 42bilhões
 		{
 			return (42000000000);
 		}
@@ -194,7 +194,6 @@ long	ft_atoi_plus(const char *nptr)
 	}
 	return (result * sign);
 }
-
 
 // Função onde vai ser iniciar tudo
 int	main(int argc, char **argv)

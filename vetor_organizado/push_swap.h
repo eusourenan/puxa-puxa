@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msilva-p <msilva-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rleite-s < rleite-s@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 00:09:11 by msilva-p          #+#    #+#             */
-/*   Updated: 2022/12/17 19:50:08 by msilva-p         ###   ########.fr       */
+/*   Updated: 2022/12/17 23:32:42 by rleite-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ struct s_stack
 	int	*indexes;
 	int	last;
 };
-typedef struct s_stack t_stack;
+typedef struct s_stack	t_stack;
 
 void	free_matrix(char **matrix);
 
