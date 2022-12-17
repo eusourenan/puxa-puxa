@@ -42,20 +42,20 @@ void	ft_organizar_indexes(t_lista *pilha_a, int quantidade_argumentos)
 		primeiro_index++;
 	}
 	primeiro_index = 0;
-	ft_putstr_fd("\n\n\t  Fim da pilha\n", 1);
+//	ft_putstr_fd("\n\n\t  Fim da pilha\n", 1);
 	while (primeiro_index < quantidade_argumentos)
 	{
-		ft_putstr_fd("pilha_a->numeros[ ", 1);
+	/* 	ft_putstr_fd("pilha_a->numeros[ ", 1);
 		ft_putnbr_fd(primeiro_index, 1);
 		ft_putstr_fd(" ]", 1);
 		ft_putstr_fd(" == Número: ", 1);
 		ft_putnbr_fd(pilha_a->numeros[primeiro_index], 1);
 		ft_putstr_fd("\tIndex(quando ordenado): ", 1);
 		ft_putnbr_fd(pilha_a->indexes[primeiro_index], 1);
-		ft_putstr_fd("\n", 1);
+		ft_putstr_fd("\n", 1); */
 		primeiro_index++;
 	}
-	ft_putstr_fd("\t\t  ^Topo da pilha\n", 1);
+	//ft_putstr_fd("\t\t  ^Topo da pilha\n", 1);
 }
 
 void	ft_cria_vetor(char **argumentos)
@@ -74,16 +74,16 @@ void	ft_cria_vetor(char **argumentos)
 	pilha_b.indexes = (int *) malloc(quantidade_argumentos * sizeof(int)); // e o espaço pros indexes
 	// if se deu errado
 	pilha_a.topo = --quantidade_argumentos;
-	pilha_b.topo = quantidade_argumentos + 1;
+	pilha_b.topo = -1;
 
 	while (*argumentos != NULL)
 	{
 		pilha_a.numeros[quantidade_argumentos--] = ft_atoi(*argumentos++);
 	}
-	ft_organizar_indexes(&pilha_a, pilha_b.topo);
-	pilha_b.topo = -1;
-	//ft_checar_caso(&pilha_a, &pilha_b, quantidade_argumentos);
-	//teste(&pilha_a, &pilha_b);
+	ft_organizar_indexes(&pilha_a, pilha_a.topo + 1);
+	//ft_checar_caso(&pilha_a, &pilha_b, pilha_a.topo + 1);
+	//print_pilhas(&pilha_a, &pilha_b, pilha_a.topo);
+	teste(&pilha_a, &pilha_b);
 
 }
 
@@ -101,8 +101,10 @@ int	ft_tem_somente_numeros(char **argumento) // lembre que argv é o que você d
 		coluna = 0; // Fica aqui porque toda linha começa da coluna zero
 		while (argumento[linha][coluna] != '\0') // Vai percorrer até o final da linha
 		{
-			if (ft_isdigit(argumento[linha][coluna]) == 0 && (argumento[linha][coluna] != '-' || coluna != 0)) // Aqui eu verifico se tem algo diferente de um número
+			if (ft_isdigit(argumento[linha][coluna]) == 0 && (argumento[linha][coluna] != '-' || argumento[linha][coluna] != '+' || coluna != 0)) // Aqui eu verifico se tem algo diferente de um número
 				return (1); // Se tiver, retorno 1 e já (o que indica que deu ruim)
+			else if ((argumento[linha][coluna] == '-' || argumento[linha][coluna] == '+') && !argumento[linha][coluna + 1])
+				return (1);
 			coluna++; // Incremento pra não ter loop infinito
 		}
 		linha++; // Incremento pra não ter loop infinito

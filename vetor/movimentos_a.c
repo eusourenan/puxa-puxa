@@ -17,6 +17,7 @@ void	ft_swap_a(t_lista *pilha_a)
 	auxiliar = pilha_a->indexes[pilha_a->topo];
 	pilha_a->indexes[pilha_a->topo] = pilha_a->indexes[pilha_a->topo - 1];
 	pilha_a->indexes[pilha_a->topo - 1] = auxiliar;
+	ft_putstr_fd("sa\n", 1);
 }
 
 void	ft_rotate_a(t_lista *pilha_a)
@@ -40,6 +41,8 @@ void	ft_rotate_a(t_lista *pilha_a)
 	}
 	pilha_a->numeros[i] = auxiliar[0];
 	pilha_a->indexes[i] = auxiliar[1];
+	ft_putstr_fd("ra\n", 1);
+
 }
 
 void	ft_reverse_rotate_a(t_lista *pilha_a)
@@ -63,6 +66,8 @@ void	ft_reverse_rotate_a(t_lista *pilha_a)
 	}
 	pilha_a->numeros[i] = auxiliar[0];
 	pilha_a->indexes[i] = auxiliar[1];
+	ft_putstr_fd("rra\n", 1);
+
 }
 
 void	ft_push_a(t_lista *pilha_a, t_lista *pilha_b)
@@ -74,4 +79,6 @@ void	ft_push_a(t_lista *pilha_a, t_lista *pilha_b)
 	}
 	pilha_a->numeros[++pilha_a->topo] = pilha_b->numeros[pilha_b->topo--];
 	pilha_a->indexes[pilha_a->topo] = pilha_b->indexes[pilha_b->topo + 1];
+	ft_putstr_fd("pa\n", 1);
+
 }
