@@ -1,96 +1,111 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movimentos_a.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msilva-p <msilva-p@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/17 00:10:58 by msilva-p          #+#    #+#             */
+/*   Updated: 2022/12/17 01:01:44 by msilva-p         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap_a(t_lista *pilha_a)
+void	ft_swap_a(t_stack *a)
 {
-	int	auxiliar;
+	int	aux;
 
-	if (pilha_a->ultimo <= 0)
+	if (a->last <= 0)
 	{
 		// deu ruim
 		return ;
 	}
-	auxiliar = pilha_a->numeros[0];
-	pilha_a->numeros[0] = pilha_a->numeros[1];
-	pilha_a->numeros[1] = auxiliar;
+	aux = a->numbers[0];
+	a->numbers[0] = a->numbers[1];
+	a->numbers[1] = aux;
 	
-	auxiliar = pilha_a->indexes[0];
-	pilha_a->indexes[0] = pilha_a->indexes[1];
-	pilha_a->indexes[1] = auxiliar;
+	aux = a->indexes[0];
+	a->indexes[0] = a->indexes[1];
+	a->indexes[1] = aux;
+	ft_printf("sa\n");
 }
 
-void	ft_rotate_a(t_lista *pilha_a)
+void	ft_rotate_a(t_stack *a)
 {
-	int	auxiliar_numeros;
-	int auxiliar_indexes;
+	int	aux_numbers;
+	int aux_indexes;
 	int	i;
 
-	if (pilha_a->ultimo <= 0)
+	if (a->last <= 0)
 	{
 		// deu ruim
 		return ;
 	}
 	i = 0;
-	auxiliar_numeros = pilha_a->numeros[0];
-	auxiliar_indexes = pilha_a->indexes[0];
-	while (i < pilha_a->ultimo)
+	aux_numbers = a->numbers[0];
+	aux_indexes = a->indexes[0];
+	while (i < a->last)
 	{
-		pilha_a->numeros[i] = pilha_a->numeros[i + 1];
-		pilha_a->indexes[i] = pilha_a->indexes[i + 1];
+		a->numbers[i] = a->numbers[i + 1];
+		a->indexes[i] = a->indexes[i + 1];
 		i++;
 	}
-	pilha_a->numeros[i] = auxiliar_numeros;
-	pilha_a->indexes[i] = auxiliar_indexes;
+	a->numbers[i] = aux_numbers;
+	a->indexes[i] = aux_indexes;
+	ft_printf("ra\n");
 }
 
-void	ft_reverse_rotate_a(t_lista *pilha_a)
+void	ft_reverse_rotate_a(t_stack *a)
 {
-	int	auxiliar_numeros;
-	int auxiliar_indexes;
+	int	aux_numbers;
+	int aux_indexes;
 	int	i;
 
-	if (pilha_a->ultimo <= 0) //if para verificar se é possível fazer o movimento 
+	if (a->last <= 0) //if para verificar se é possível fazer o movimento 
 	{
 		// deu ruim
 		return ;
 	}
-	i = pilha_a->ultimo;
-	auxiliar_numeros = pilha_a->numeros[i];
-	auxiliar_indexes = pilha_a->indexes[i];
+	i = a->last;
+	aux_numbers = a->numbers[i];
+	aux_indexes = a->indexes[i];
 	while (i > 0)
 	{
-		pilha_a->numeros[i] = pilha_a->numeros[i - 1];
-		pilha_a->indexes[i] = pilha_a->indexes[i - 1];
+		a->numbers[i] = a->numbers[i - 1];
+		a->indexes[i] = a->indexes[i - 1];
 		i--;
 	}
-	pilha_a->numeros[i] = auxiliar_numeros;
-	pilha_a->indexes[i] = auxiliar_indexes;
+	a->numbers[i] = aux_numbers;
+	a->indexes[i] = aux_indexes;
+	ft_printf("rra\n");
 }
 
-void	ft_push_a(t_lista *pilha_a, t_lista *pilha_b)
+void	ft_push_a(t_stack *b, t_stack *a)
 {
 	int i;
 	 
-	if (pilha_b->ultimo < 0) //se a pilha estiver vazia, o ultimo elemento dela vale -1 (não tem nenhum caracter)
+	if (b->last < 0) //se a pilha estiver vazia, o last elemento dela vale -1 (não tem nenhum caracter)
 	{
 		// deu ruim
 		return;
 	}
-	i = pilha_a->ultimo + 1;
+	i = a->last + 1;
 	while (i > 0)
 	{
-		pilha_a->numeros[i] = pilha_a->numeros[i - 1]; //cada posição vai receber a posição(valor dela) acima
-		pilha_a->indexes[i] = pilha_a->indexes[i - 1];
+		a->numbers[i] = a->numbers[i - 1]; //cada posição vai receber a posição(valor dela) acima
+		a->indexes[i] = a->indexes[i - 1];
 		i--;
 	}
-	pilha_a->numeros[0] = pilha_b->numeros[0];
-	pilha_a->indexes[0] = pilha_b->indexes[0];
-	while (i < pilha_b->ultimo)
+	a->numbers[0] = b->numbers[0];
+	a->indexes[0] = b->indexes[0];
+	while (i < b->last)
 	{
-		pilha_b->numeros[i] = pilha_b->numeros[i + 1];
-		pilha_b->indexes[i] = pilha_b->indexes[i + 1];
+		b->numbers[i] = b->numbers[i + 1];
+		b->indexes[i] = b->indexes[i + 1];
 		i++;
 	}
-	pilha_b->ultimo = pilha_b->ultimo - 1;
-	pilha_a->ultimo = pilha_a->ultimo + 1;
+	b->last = b->last - 1;
+	a->last = a->last + 1;
+	ft_printf("pa\n");
 }

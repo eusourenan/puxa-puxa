@@ -1,41 +1,59 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msilva-p <msilva-p@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/17 00:09:11 by msilva-p          #+#    #+#             */
+/*   Updated: 2022/12/17 01:00:54 by msilva-p         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # include "../Libft42/libft.h"
 # include "defines.h"
-	#include <stdio.h>
 
-struct s_lista
+struct s_stack
 {
-	int	*numeros;
+	int	*numbers;
 	int	*indexes;
-	int	ultimo;
+	int	last;
 };
-
-typedef struct s_lista t_lista;
+typedef struct s_stack t_stack;
 
 void	free_matrix(char **matrix);
 
-void	ft_swap_a(t_lista *pilha_a);
-void	ft_rotate_a(t_lista *pilha_a);
-void	ft_reverse_rotate_a(t_lista *pilha_a);
-void	ft_push_a(t_lista *pilha_a, t_lista *pilha_b);
+void	ft_swap_a(t_stack *a);
+void	ft_rotate_a(t_stack *a);
+void	ft_reverse_rotate_a(t_stack *a);
+void	ft_push_a(t_stack *a, t_stack *b);
 
-void	ft_swap_b(t_lista *pilha_b);
-void	ft_rotate_b(t_lista *pilha_b);
-void	ft_reverse_rotate_b(t_lista *pilha_b);
-void	ft_push_b(t_lista *pilha_b, t_lista *pilha_a);
+void	ft_swap_b(t_stack *b);
+void	ft_rotate_b(t_stack *b);
+void	ft_reverse_rotate_b(t_stack *b);
+void	ft_push_b(t_stack *b, t_stack *a);
 
-void	ft_swap_swap(t_lista *pilha_a, t_lista *pilha_b);
-void	ft_rotate_rotate(t_lista *pilha_a, t_lista *pilha_b);
-void	ft_reverse_rotate_rotate(t_lista *pilha_a, t_lista *pilha_b);
+void	ft_swap_swap(t_stack *a, t_stack *b);
+void	ft_rotate_rotate(t_stack *a, t_stack *b);
+void	ft_reverse_rotate_rotate(t_stack *a, t_stack *b);
 
-void	teste(t_lista *pilha_a, t_lista *pilha_b);
+void	ft_checker(t_stack *a, t_stack *b, int numbers);
+void	ft_sort_for_3(t_stack *a);
+void	ft_sort_for_5(t_stack *a, t_stack *b);
+void	ft_sort_more_5(t_stack *a, t_stack *b, int nums_stack);
+int		ft_ret_bigger(t_stack *a);
+int		ft_ret_bigger_binary(t_stack *a);
+int		ft_ret_pos_smaller(t_stack *a);
 
-void	ft_checar_caso(t_lista *pilha_a, t_lista *pilha_b, int numeros);
+int		ft_error(void);
+void	ft_define_index(t_stack *a, int args);
+int		ft_malloc(int **vector, int args);
+int		ft_alloc_stack(t_stack *a, t_stack *b, int args);
+void	ft_create_vector(int argc, char **args);
+int		ft_is_only_numbers(char **arg);
 
-void	print_pilhas(t_lista *pilha_a, t_lista *pilha_b, int qtd);
 
 #endif

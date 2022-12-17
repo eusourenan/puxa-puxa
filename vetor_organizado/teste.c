@@ -5,8 +5,8 @@
 
 void	print_pilhas(t_lista *pilha_a, t_lista *pilha_b, int qtd)
 {
-	int	size_a = pilha_a->topo;
-	int	size_b = pilha_b->topo;
+	int	size_a = pilha_a->ultimo;
+	int	size_b = pilha_b->ultimo;
 	int	index = 0;
 
 	while (index <= qtd)

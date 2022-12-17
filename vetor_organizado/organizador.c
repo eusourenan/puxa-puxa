@@ -6,200 +6,192 @@
 /*   By: msilva-p <msilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 19:58:16 by rleite-s          #+#    #+#             */
-/*   Updated: 2022/12/16 19:04:10 by msilva-p         ###   ########.fr       */
+/*   Updated: 2022/12/17 01:07:17 by msilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_organiza_ate_3(t_lista *pilha_a, t_lista *pilha_b);
-void	ft_organiza_ate_5(t_lista *pilha_a, t_lista *pilha_b);
-void	ft_organiza_ate_100(t_lista *pilha_a, t_lista *pilha_b);
-void	ft_organiza_acima_100(t_lista *pilha_a, t_lista *pilha_b);
-
-/*void	ft_executa_movimento(int movimento, t_lista *pilha_a, t_lista *pilha_b)
+/*void	ft_executa_movimento(int movimento, t_lista *a, t_lista *b)
 {
 	int retorno;
 
 	if (movimento == PA)
-		retorno = ft_push_a(pilha_a, pilha_b);
+		retorno = ft_push_a(a, b);
 	else if (movimento == PB)
-		retorno = ft_push_b(pilha_b, pilha_a);
+		retorno = ft_push_b(b, a);
 	else if (movimento == SA)
-		retorno = ft_swap_a(pilha_a);
+		retorno = ft_swap_a(a);
 	else if (movimento == SB)
-		retorno = ft_swap_b(pilha_b);
+		retorno = ft_swap_b(b);
 	else if (movimento == RA)
-		retorno = ft_rotate_a(pilha_a);
+		retorno = ft_rotate_a(a);
 	else if (movimento == RB)
-		retorno = ft_rotate_b(pilha_b);
+		retorno = ft_rotate_b(b);
 	else if (movimento == RRA)
-		retorno = ft_reverse_rotate_a(pilha_a);
+		retorno = ft_reverse_rotate_a(a);
 	else if (movimento == RRB)
-		retorno = ft_reverse_rotate_b(pilha_b);
+		retorno = ft_reverse_rotate_b(b);
 	else if (movimento == SS)
-		retorno = ft_swap_swap(pilha_a, pilha_b);
+		retorno = ft_swap_swap(a, b);
 	else if (movimento == RR)
-		retorno = ft_rotate_rotate(pilha_a, pilha_b);
+		retorno = ft_rotate_rotate(a, b);
 	else if (movimento == RRR)
-		retorno = ft_reverse_rotate_rotate(pilha_a, pilha_b);
+		retorno = ft_reverse_rotate_rotate(a, b);
 	return (retorno);	
 }*/
 
-void	ft_checar_caso(t_lista *pilha_a, t_lista *pilha_b, int numeros)
+void	ft_checker(t_stack *a, t_stack *b, int numbers)
 {
-	if (numeros <= 3)
-		ft_organiza_ate_3(pilha_a, pilha_b);
-	else if (numeros <= 5)
-		ft_organiza_ate_5(pilha_a, pilha_b);
+	if (numbers < 3)
+		ft_sort_for_3(a);
+	else if (numbers < 5)
+		ft_sort_for_5(a, b);
 	else
-		ft_organiza_ate_100(pilha_a, pilha_b);
+		ft_sort_more_5(a, b, a->last);
 }
 
-void	ft_organiza_ate_3(t_lista *pilha_a, t_lista *pilha_b)
+void	ft_sort_for_3(t_stack *a)
 {
-	if (pilha_a->ultimo == 1)
+	if (a->last == 1)
 	{
-		if (pilha_a->numeros[0] > pilha_a->numeros[1])
-			ft_swap_a(pilha_a);
+		if (a->numbers[0] > a->numbers[1])
+			ft_swap_a(a);
 	}
-	else if (pilha_a->numeros[0] > pilha_a->numeros[1] 
-		&& pilha_a->numeros[0] > pilha_a->numeros[2])
+	else if (a->numbers[0] > a->numbers[1] && a->numbers[0] > a->numbers[2])
 	{
-		ft_reverse_rotate_a(pilha_a);
-		if (pilha_a->numeros[1] > pilha_a->numeros[2])
-			ft_swap_a(pilha_a);
+		ft_rotate_a(a);
+		if (a->numbers[0] > a->numbers[1])
+			ft_swap_a(a);
 	}
-	else if (pilha_a->numeros[1] > pilha_a->numeros[0] 
-		&& pilha_a->numeros[1] > pilha_a->numeros[2])
+	else if (a->numbers[1] > a->numbers[0] && a->numbers[1] > a->numbers[2])
 	{
-		if (pilha_a->numeros[0] < pilha_a->numeros[2])
-			ft_swap_a(pilha_a);
-		ft_reverse_rotate_a(pilha_a);
+		ft_reverse_rotate_a(a);
+		if (a->numbers[0] > a->numbers[1])
+			ft_swap_a(a);
 	}
-	else if (pilha_a->numeros[2] > pilha_a->numeros[0] 
-		&& pilha_a->numeros[2] > pilha_a->numeros[1])
+	else if (a->numbers[2] > a->numbers[0] && a->numbers[2] > a->numbers[1])
 	{
-		if (pilha_a->numeros[0] > pilha_a->numeros[1])
-			ft_swap_a(pilha_a);
+		if (a->numbers[0] > a->numbers[1])
+			ft_swap_a(a);
 	}
 }
 
-int ft_retorna_maior (t_lista *pilha_a)
+int	ft_ret_bigger(t_stack *a)
 {
-	int numero;
-	int renan;
-	int maior_index;
+	int number;
+	int bigger;
+	int bigger_index;
 	
-	numero = pilha_a->numeros[pilha_a->topo];
-	renan = pilha_a->topo;
-	maior_index = renan;
-	while(renan <= pilha_a->ultimo)
+	number = a->numbers[0];
+	bigger = 0;
+	bigger_index = bigger;
+	while(bigger <= a->last)
 	{
-		if(pilha_a->numeros[renan] > numero)
+		if(a->numbers[bigger] > number)
 		{
-			numero = pilha_a->numeros[renan];
-			maior_index = renan;
+			number = a->numbers[bigger];
+			bigger_index = bigger;
 		}
-		renan++;
+		bigger++;
 	}
-	return(maior_index);
+	return(bigger_index);
 } 
 
-void	ft_organiza_ate_5(t_lista *pilha_a, t_lista *pilha_b)
-{
-	int	menor_posicao;
-
-	while (pilha_a->ultimo >= 3)
-	{
-		menor_posicao = ft_ret_posicao_do_menor(pilha_a);
-		if (menor_posicao == 0)
-			ft_push_b(pilha_a, pilha_b);
-		else if (menor_posicao == 1)
-			ft_swap_a(pilha_a);
-		else if (menor_posicao == 2)
-			ft_rotate_a(pilha_a);
-		else if (menor_posicao == 3)
-			ft_reverse_rotate_a(pilha_a);
-		else if (menor_posicao == 4)
-			ft_reverse_rotate_a(pilha_a);
-	}
-	ft_organiza_ate_3(pilha_a);
-	while (pilha_b->ultimo > -1)
-		ft_push_a(pilha_b, pilha_a);
-}
-
-int ft_ret_posicao_do_menor(t_lista *pilha_a)
+int		ft_ret_pos_smaller(t_stack *a)
 {
 	int i;
-	int menor_num;
-	int posicao_do_menor;
+	int small_num;
+	int pos_small;
 
-	i = 1;
-	menor_num = pilha_a->numeros[0];
-	posicao_do_menor = 0;
-	while (i <= pilha_a->ultimo)
+	i = 0;
+	small_num = a->numbers[0];
+	pos_small = 0;
+	while (i <= a->last)
 	{
-		if (pilha_a->numeros[i] < menor_num)
+		if (a->numbers[i] < small_num)
 		{
-			menor_num = pilha_a->numeros[i];
-			posicao_do_menor = i;
+			small_num = a->numbers[i];
+			pos_small = i;
 		}
 		i++;
 	}
-	return (posicao_do_menor);
+	return (pos_small);
 }
 
-int ft_ret_maior_binario (t_lista *pilha_a)
+void	ft_sort_for_5(t_stack *a, t_stack *b)
+{
+	int	small_pos;
+
+	while (a->last >= 3)
+	{
+		small_pos = ft_ret_pos_smaller(a);
+		if (small_pos == 0)
+			ft_push_b(a, b);
+		else if (small_pos == 1)
+			ft_swap_a(a);
+		else if (small_pos == 2)
+			ft_rotate_a(a);
+		else if (small_pos == 3)
+			ft_reverse_rotate_a(a);
+		else if (small_pos == 4)
+			ft_reverse_rotate_a(a);
+	}
+	ft_sort_for_3(a);
+	while (b->last > -1)
+		ft_push_a(b, a);
+}
+
+int		ft_ret_bigger_binary(t_stack *a)
 {
 	int i;
-	int maior_num;
-	int qtd_dig_binario;
+	int bigger_num;
+	int qtd_dig_binary;
 
 	i = 1;
-	maior_num = pilha_a->numeros[0];
-	qtd_dig_binario = 0;
-	while (i <= pilha_a->ultimo)
+	bigger_num = a->numbers[0];
+	qtd_dig_binary = 0;
+	while (i <= a->last)
 	{
-		if (pilha_a->numeros[i] > maior_num)
+		if (a->numbers[i] > bigger_num)
 		{
-			maior_num = pilha_a->numeros[i];
+			bigger_num = a->numbers[i];
 		}
 		i++;
 	}
-	while (maior_num > 0)
+	while (bigger_num > 0)
 	{
-		maior_num = maior_num / 2;
-		qtd_dig_binario++;
+		bigger_num = bigger_num / 2;
+		qtd_dig_binary++;
 	}
-	return (qtd_dig_binario);
+	return (qtd_dig_binary);
 }
 
-void	ft_organiza_ate_100(t_lista *pilha_a, t_lista *pilha_b, int qtd_num_stack)
+void	ft_sort_more_5(t_stack *a, t_stack *b, int nums_stack)
 {
-	int qtd_dig_binario;
+	int qtd_dig_binary;
 	int i;
 	int j;
 
-	qtd_dig_binario = ft_ret_maior_binario (pilha_a);
+	qtd_dig_binary = ft_ret_bigger_binary(a);
 	i = 0;
-	while (i < qtd_dig_binario)
+	while (i < qtd_dig_binary)
 	{
 		j = 0;
-		while (j < qtd_num_stack)
+		while (j < nums_stack)
 		{
-			if (pilha_a->numeros[0] >> i & 1)
+			if (a->numbers[0] >> i & 1)
 			{
-				ft_rotate_a(pilha_a);
+				ft_rotate_a(a);
 			}
 			else
 			{
-				ft_push_b(pilha_a, pilha_b);
+				ft_push_b(a, b);
 			}
 			j++;
 		}
-		while (pilha_b->ultimo > -1)
-			ft_push_a(pilha_b, pilha_a);
+		while (b->last > -1)
+			ft_push_a(b, a);
 		i++;
 	}
 }
